@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>活動報名</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="bgLayer" class="bg-layer" data-bg="none" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <img id="brandLogo" class="brand-logo" alt="" hidden>
+    <p id="brandText" class="brand">活動報名</p>
+  </div>
+</header>
+
+<nav id="siteNav" class="site-nav" aria-label="頁面選單" hidden>
+  <ul>
+    <li id="navIntro"><a href="#intro">活動前言</a></li>
+    <li id="navInfo"><a href="#info">日期與時間</a></li>
+    <li><a href="#register" class="site-nav__cta">立即報名</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- 連結無效時顯示 -->
+  <section id="loadError" class="page-section" hidden>
+    <h1 class="section-title">找不到這個活動</h1>
+    <p class="intro-text">這個報名連結看起來不完整或已失效，請向主辦單位索取新的連結。</p>
+    <p><a class="btn btn--ghost btn--small" href="index.html">我是主辦者，建立新活動</a></p>
+  </section>
+
+  <div id="content" hidden>
+    <section class="hero" aria-labelledby="eventTitle">
+      <div class="hero__inner">
+        <p class="hero__eyebrow">線上報名</p>
+        <h1 id="eventTitle" class="hero__title">活動名稱</h1>
+        <ul class="hero__meta">
+          <li id="metaDate"><span class="meta-label">日期</span><span class="meta-value"></span></li>
+          <li id="metaLocation"><span class="meta-label">地點</span><span class="meta-value"></span></li>
+        </ul>
+        <a class="btn btn--primary" href="#register">立即報名</a>
+      </div>
+    </section>
+
+    <section id="intro" class="page-section" aria-labelledby="introHeading">
+      <h2 id="introHeading" class="section-title">活動前言</h2>
+      <p id="eventIntro" class="intro-text"></p>
+      <div id="introPlace" class="intro-place" hidden>
+        <h3>活動地點</h3>
+        <ul id="introPlaceList" class="loc-list"></ul>
+      </div>
+    </section>
+
+    <section id="info" class="page-section" aria-labelledby="infoHeading">
+      <h2 id="infoHeading" class="section-title">日期與時間</h2>
+      <div class="info-card"><p id="infoDate" class="info-date"></p></div>
+    </section>
+
+    <section id="register" class="form-section" aria-labelledby="formHeading">
+      <h2 id="formHeading" class="section-title">填寫報名資料</h2>
+      <p class="section-note"><span class="req">*</span> 為必填欄位</p>
+
+      <form id="regForm" class="reg-form" novalidate></form>
+
+      <div id="success" class="success" hidden tabindex="-1">
+        <div class="success__icon" aria-hidden="true">✓</div>
+        <h2>報名完成！</h2>
+        <p id="successText"></p>
+        <p id="demoNote" class="success__demo">目前為示範版本：資料不會被傳送或儲存。</p>
+        <button type="button" id="resetBtn" class="btn btn--ghost">再填一份</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p id="footerText"></p>
+  <p><a href="index.html">想辦活動？用「活動報名建立器」做一個</a></p>
+</footer>
+
+<script src="config.js"></script>
+<script src="shared.js"></script>
+<script src="register.js"></script>
+</body>
+</html>

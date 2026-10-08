@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>活動報名建立器</title>
+<meta name="description" content="四個步驟，建立屬於你的活動報名頁">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="builder.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <p class="brand">活動報名<span class="brand-tag">建立器</span></p>
+    <p class="brand-sub">四個步驟，做出你的活動報名頁</p>
+  </div>
+</header>
+
+<ol class="steps" id="steps" aria-label="建立步驟">
+  <li><button type="button" data-step="1"><span class="steps__n">1</span>選擇風格</button></li>
+  <li><button type="button" data-step="2"><span class="steps__n">2</span>挑選題目</button></li>
+  <li><button type="button" data-step="3"><span class="steps__n">3</span>活動資訊</button></li>
+  <li><button type="button" data-step="4"><span class="steps__n">4</span>預覽與分享</button></li>
+</ol>
+
+<main class="b-main">
+
+  <!-- 步驟 1：風格 -->
+  <section class="panel" data-panel="1" aria-labelledby="h1">
+    <h2 id="h1" class="panel__title">1. 選擇報名頁的風格</h2>
+    <p class="panel__lead">先決定整體氣質，之後隨時可以回來更換。</p>
+
+    <div id="themeList" class="theme-list" role="radiogroup" aria-label="風格"></div>
+
+    <h3 class="panel__sub">頁面底圖（選填）</h3>
+    <p class="panel__lead">淡淡地疊在風格底色上，增加質感；不想要就選「無底圖」。</p>
+    <div id="bgList" class="theme-grid" role="radiogroup" aria-label="頁面底圖"></div>
+
+    <h3 class="panel__sub">Logo 與主視覺圖（選填）</h3>
+    <p class="panel__lead">純靜態網站無法在網頁上傳檔案。請先把圖片放進專案的 <code>images/</code> 資料夾，再填入檔名，例如 <code>logo.png</code>。<br>想先試試？主視覺可填 <code>hero-bg.svg</code>（範例圖）。</p>
+    <div class="grid2">
+      <div class="b-field">
+        <label for="logo">Logo 檔名</label>
+        <input id="logo" type="text" placeholder="logo.png" autocomplete="off">
+        <p class="b-msg" id="logoMsg" role="alert"></p>
+      </div>
+      <div class="b-field">
+        <label for="hero">主視覺圖檔名</label>
+        <input id="hero" type="text" placeholder="banner.jpg" autocomplete="off">
+        <p class="b-msg" id="heroMsg" role="alert"></p>
+      </div>
+    </div>
+
+    <details class="import">
+      <summary>已經有報名連結？貼上來繼續編輯</summary>
+      <div class="import__row">
+        <input id="importInput" type="text" placeholder="貼上 register.html?c=... 連結" autocomplete="off" aria-label="報名連結">
+        <button type="button" id="importBtn" class="btn btn--ghost btn--small">匯入</button>
+      </div>
+      <p class="b-msg" id="importMsg" role="alert"></p>
+    </details>
+  </section>
+
+  <!-- 步驟 3：活動資訊 -->
+  <section class="panel" data-panel="3" aria-labelledby="h2" hidden>
+    <h2 id="h2" class="panel__title">3. 填寫活動資訊</h2>
+    <p class="panel__lead">已預設為「近視老花雷射評估問卷」的完整內容（標題、前言、四個院所、提醒與個資告知），可直接修改成其他活動。只有「活動名稱」是必填。</p>
+
+    <div class="b-field">
+      <label for="name">活動名稱 <span class="req">*</span></label>
+      <input id="name" type="text" maxlength="100" placeholder="例如：AI 入門體驗工作坊">
+    </div>
+    <div class="grid3">
+      <div class="b-field"><label for="date">日期</label><input id="date" type="date"></div>
+      <div class="b-field"><label for="start">開始時間</label><input id="start" type="time"></div>
+      <div class="b-field"><label for="end">結束時間</label><input id="end" type="time"></div>
+    </div>
+    <div class="b-field">
+      <label for="loc">活動地點（一行一個，可用 ｜ 加上地址）</label>
+      <textarea id="loc" rows="3" placeholder="台北館前會場｜台北市中正區館前路 43 號 2F&#10;新竹會場｜新竹縣竹北市光明六路"></textarea>
+      <p class="b-hint">預設報名表有「預約地點／場次」題，會用這裡填的地點當選項；沒填地點時，這題不會出現（可回上一步「挑選題目」移除這題）。</p>
+    </div>
+    <div class="b-field">
+      <label for="intro">活動前言</label>
+      <textarea id="intro" rows="4" maxlength="2000" placeholder="簡短說明活動內容、對象與注意事項"></textarea>
+    </div>
+    <div class="b-field">
+      <label for="notice">表單底部提醒（選填）</label>
+      <textarea id="notice" rows="3" maxlength="2000" placeholder="顯示在送出按鈕上方的提醒文字，不需要可留空"></textarea>
+    </div>
+    <div class="b-field">
+      <label for="priv">個人資料蒐集告知</label>
+      <textarea id="priv" rows="4" maxlength="2000"></textarea>
+      <p class="b-hint">預設為濰視眼科問卷的告知內容，其他單位使用時請改成自己的。</p>
+    </div>
+  </section>
+
+  <!-- 步驟 2：題目 -->
+  <section class="panel" data-panel="2" aria-labelledby="h3" hidden>
+    <h2 id="h3" class="panel__title">2. 挑選報名表的題目</h2>
+    <p class="panel__lead">已依範本問卷預設好 11 題（左邊標示「預設」，預設全部必填）。<strong>不需要的就取消勾選</strong>，或在右邊按 ✕ 移除；<strong>想加的</strong>從題庫勾選，或在下方新增自訂題目。</p>
+    <div class="q-actions">
+      <button type="button" id="restoreQ" class="btn btn--ghost btn--small">恢復預設題目</button>
+      <button type="button" id="clearQ" class="btn btn--ghost btn--small">全部清空，自己挑</button>
+    </div>
+
+    <div class="q-layout">
+      <div class="q-col">
+        <h3 class="panel__sub">題庫</h3>
+        <div id="bankList"></div>
+      </div>
+      <div class="q-col">
+        <h3 class="panel__sub">已選題目 <span id="selCount" class="count"></span></h3>
+        <ol id="selList" class="sel-list"></ol>
+        <p id="selEmpty" class="b-hint" hidden>還沒有題目，請從左邊勾選。</p>
+        <p id="locWarn" class="b-warn" hidden>你選了「預約地點／場次」，但還沒填地點。請在下一步「活動資訊」填寫地點，否則這題在報名頁不會出現。</p>
+      </div>
+    </div>
+
+    <div class="custom">
+      <h3 class="panel__sub">新增自訂題目</h3>
+      <div class="grid2">
+        <div class="b-field">
+          <label for="cTitle">題目文字</label>
+          <input id="cTitle" type="text" maxlength="200" placeholder="例如：你最想學會什麼？">
+        </div>
+        <div class="b-field">
+          <label for="cKind">題型</label>
+          <select id="cKind"></select>
+        </div>
+      </div>
+      <div class="b-field" id="cOptsWrap" hidden>
+        <label for="cOpts">選項（一行一個，至少兩個）</label>
+        <textarea id="cOpts" rows="3" placeholder="選項一&#10;選項二"></textarea>
+      </div>
+      <label class="option option--plain"><input type="checkbox" id="cReq"><span>必填</span></label>
+      <p class="b-msg" id="cMsg" role="alert"></p>
+      <button type="button" id="cAdd" class="btn btn--ghost btn--small">＋ 加入題目</button>
+    </div>
+  </section>
+
+  <!-- 步驟 4：預覽與分享 -->
+  <section class="panel" data-panel="4" aria-labelledby="h4" hidden>
+    <h2 id="h4" class="panel__title">4. 預覽與分享</h2>
+    <p id="summary" class="panel__lead"></p>
+
+    <div class="cloud">
+      <h3 class="panel__sub">收集報名資料：Google 試算表</h3>
+      <p id="cloudLead" class="panel__lead"></p>
+      <div id="cloudForm" hidden>
+        <div class="b-field">
+          <label for="cloudCode">主辦者通行碼 <span class="req">*</span></label>
+          <input id="cloudCode" type="password" autocomplete="off" placeholder="向管理員索取">
+          <p class="b-hint">通行碼用來確認你是被授權的主辦者，只用於建立試算表，不會存在網頁或連結裡。</p>
+        </div>
+        <div class="b-field">
+          <label for="cloudEmail">你的 Google 帳號 Email（選填）</label>
+          <input id="cloudEmail" type="email" placeholder="you@gmail.com" autocomplete="email">
+          <p class="b-hint">填寫後，這份試算表會共用給你（編輯權限），你就能直接查看與下載報名名單。</p>
+        </div>
+        <button type="button" id="cloudBtn" class="btn btn--primary btn--small">建立並連結試算表</button>
+      </div>
+      <p class="b-msg" id="cloudMsg" role="alert"></p>
+      <div id="cloudLinks" class="cloud__links" hidden>
+        <a id="sheetOpen" class="btn btn--ghost btn--small" target="_blank" rel="noopener">開啟試算表</a>
+        <a id="sheetXlsx" class="btn btn--ghost btn--small" target="_blank" rel="noopener">下載 Excel（.xlsx）</a>
+        <a id="sheetCsv" class="btn btn--ghost btn--small" target="_blank" rel="noopener">下載 CSV</a>
+      </div>
+    </div>
+
+    <div class="share">
+      <label for="shareLink">報名連結（把它發給報名者）</label>
+      <div class="share__row">
+        <input id="shareLink" type="text" readonly>
+        <button type="button" id="copyBtn" class="btn btn--primary btn--small">複製連結</button>
+        <a id="openBtn" class="btn btn--ghost btn--small" target="_blank" rel="noopener">開新分頁</a>
+      </div>
+      <p class="b-msg b-msg--ok" id="copyMsg" role="status"></p>
+      <p class="b-hint" id="lenNote"></p>
+    </div>
+
+    <ul class="notes">
+      <li>所有設定都包在連結裡，之後想修改，回到這個頁面調整後重新複製連結即可（或用步驟 1 的「匯入」）。</li>
+      <li>如果使用了 Logo 或主視覺圖，請確認圖片已一併上傳到 GitHub 的 <code>images/</code> 資料夾。</li>
+      <li>要收集報名資料，需先按上方「建立並連結試算表」，再複製下面的連結；沒連結雲端的連結只會顯示示範成功畫面。</li>
+      <li>之後修改題目不需要重建試算表，新題目會自動變成新欄位。</li>
+    </ul>
+
+    <h3 class="panel__sub">報名頁預覽</h3>
+    <iframe id="preview" class="preview" title="報名頁預覽"></iframe>
+  </section>
+
+  <p id="stepMsg" class="b-msg b-msg--step" role="alert"></p>
+</main>
+
+<div class="b-nav">
+  <div class="b-nav__inner">
+    <button type="button" id="resetBtn" class="linkbtn">重新開始</button>
+    <span class="b-nav__spacer"></span>
+    <button type="button" id="prevBtn" class="btn btn--ghost btn--small">上一步</button>
+    <button type="button" id="nextBtn" class="btn btn--primary btn--small">下一步</button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="shared.js"></script>
+<script src="builder.js"></script>
+</body>
+</html>
